@@ -8,9 +8,7 @@ public class Mail {
 
     private String mailTo;
 
-    private String mailCc;
 
-    private String mailBcc;
 
     private String mailSubject;
 
@@ -31,23 +29,7 @@ public class Mail {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
-
-    public String getMailBcc() {
-        return mailBcc;
-    }
-
-    public void setMailBcc(String mailBcc) {
-        this.mailBcc = mailBcc;
-    }
-
-    public String getMailCc() {
-        return mailCc;
-    }
-
-    public void setMailCc(String mailCc) {
-        this.mailCc = mailCc;
-    }
-
+    
     public String getMailFrom() {
         return mailFrom;
     }
