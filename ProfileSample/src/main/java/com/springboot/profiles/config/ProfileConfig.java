@@ -1,8 +1,6 @@
 package com.springboot.profiles.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -19,7 +17,7 @@ public class ProfileConfig {
 	public void devConfig() {
 		log.info("Succesfully loaded the development environment.");
 	}
-
+	
 	@Profile(value = "qa")
 	@Bean
 	public void qaConfig() {
@@ -31,4 +29,6 @@ public class ProfileConfig {
 	public void prodConfig() {
 		log.info("Succesfully loaded the production environment.");
 	}
+
+
 }

@@ -1,6 +1,0 @@
-spring:
-  message: Hello world from testing environment
-  
-## profile specific port.
-server:
-  port: 10092
