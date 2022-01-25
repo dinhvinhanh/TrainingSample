@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/CacheSample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CacheSample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JPA-Rest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JPA-Rest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JWTsample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JWTsample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ProfileSample/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ProfileSample/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ScheduleEmailTask/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ScheduleEmailTask/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

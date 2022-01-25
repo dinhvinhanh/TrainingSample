@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-profiles" />
+        <module name="sample1" />
+        <module name="jwt-secure-sample" />
+        <module name="spring-caching" />
+        <module name="scheduled-sample" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jpa-sample" target="11" />
+      <module name="jwt-secure-sample" target="1.8" />
+      <module name="sample1" target="11" />
+      <module name="scheduled-sample" target="11" />
+      <module name="spring-caching" target="11" />
+      <module name="spring-profiles" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jpa-sample" options="-parameters" />
+      <module name="jwt-secure-sample" options="-parameters" />
+      <module name="sample1" options="-parameters" />
+      <module name="scheduled-sample" options="-parameters" />
+      <module name="spring-caching" options="-parameters" />
+      <module name="spring-profiles" options="-parameters" />
+    </option>
+  </component>
+</project>
