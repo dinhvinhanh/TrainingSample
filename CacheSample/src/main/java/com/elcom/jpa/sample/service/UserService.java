@@ -1,6 +1,6 @@
-package com.elcom.jpa.restful.service;
+package com.elcom.jpa.sample.service;
 
-import com.elcom.jpa.restful.model.User;
+import com.elcom.jpa.sample.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +15,5 @@ public interface UserService{
 
     void removeUser (Long id);
 
-    public void simulateSlowService();
-
     public void clearCache();
-
 }

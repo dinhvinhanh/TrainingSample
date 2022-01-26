@@ -1,8 +1,9 @@
-package com.elcom.jpa.restful.service.impl;
+package com.elcom.jpa.sample.service.impl;
 
-import com.elcom.jpa.restful.model.User;
-import com.elcom.jpa.restful.repository.UserRepository;
-import com.elcom.jpa.restful.service.UserService;
+import com.elcom.jpa.sample.model.User;
+import com.elcom.jpa.sample.repository.UserRepository;
+import com.elcom.jpa.sample.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,38 +13,30 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     @Cacheable("user")
     public List<User> findAll() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        log.info("LIST OF USERS:", users);
+        return users;
     }
 
     @Override
-    @Cacheable("user")
+    @Cacheable(value = "user")
     public Optional<User> findById(Long id) {
-
+        log.info("USER WITH ID " + id );
         return userRepository.findById(id);
     }
 
-    public void simulateSlowService() {
-        try {
-            long time = 3000L;
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        }
-    }
     @Override
     public User saveUser(User user) {
+        log.info("ADD 1 USER ");
         return userRepository.save(user);
     }
 
@@ -51,8 +44,10 @@ public class UserServiceImpl implements UserService {
     public void clearCache() {
     }
 
-    @Override
-    public void removeUser(Long id) {
+    @CacheEvict(value = "user", allEntries=true)
+    public void removeUser(Long id){
         userRepository.deleteById(id);
+        log.info("DELETE USER WITH ID " + id);
     }
+
 }

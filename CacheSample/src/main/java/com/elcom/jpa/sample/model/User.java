@@ -1,16 +1,18 @@
-package com.elcom.jpa.restful.model;
+package com.elcom.jpa.sample.model;
 
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-public class User {
+
+public class User implements Serializable {
+    private static final long serialVersionUID = 7156526077883281623L;
     @Id
+    @SequenceGenerator(name = "SEQ_GEN", sequenceName = "SEQ_USER", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -47,9 +49,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("User{id=%d, name='%s'}", id, name);
     }
 }
