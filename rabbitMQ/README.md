@@ -1,4 +1,4 @@
-#Sping Boot with ActiveMQ using Docker:
+#Sping Boot with RabbitMQ using Docker:
 
 docker-compose up
 
