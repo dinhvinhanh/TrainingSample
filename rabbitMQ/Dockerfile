@@ -16,4 +16,4 @@ COPY ./pom.xml ./pom.xml
 RUN chmod 755 /app/mvnw
 
 RUN ./mvnw package -DskipTests
-ENTRYPOINT ["java","-jar","target/rabbitMQ.jar"]
+ENTRYPOINT ["java","-jar","D:\GitHub\SpringSample\TrainingSample\rabbitMQ\target\rabbitMQ.jar"]

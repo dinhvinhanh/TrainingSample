@@ -33,7 +33,7 @@ public class UserController {
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable long id){
 
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + id));
 
         userRepository.delete(user);
 
@@ -43,7 +43,7 @@ public class UserController {
     @GetMapping("/user/{id}")
     public ResponseEntity<User> findById(@PathVariable  long id){
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id:" + id));
         return ResponseEntity.ok(user);
     }
 }
