@@ -1,10 +1,12 @@
 package com.elcom.springelastic.controller;
 
-import com.elcom.springelastic.model.Book;
-import com.elcom.springelastic.repository.BookRepository;
-import com.fasterxml.jackson.core.type.TypeReference;
+
+import com.elcom.springelastic.model.BookModel;
+import com.elcom.springelastic.model.dto.BookDTO;
+import com.elcom.springelastic.repository.elastic.BookESRepo;
+import com.elcom.springelastic.service.impl.BookServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.ResourceNotFoundException;
-import org.elasticsearch.core.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,57 +18,74 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
+@Slf4j
 public class BookController {
     @Autowired
-    private BookRepository bookRepository;
+    private BookESRepo bookESRepo;
 
-    @PutMapping("/book")
-    public Book save(Book book) {
-        return bookRepository.save(book);
+    @Autowired
+    private BookServiceImpl bookService;
+
+    public BookController(BookServiceImpl bookService) {
+        this.bookService = bookService;
     }
 
+    //@PutMapping("/book")
+    //public BookModel save(BookModel bookModel) {
+    //return bookRepository.save(bookModel);
+    //}
+
     @PostMapping("/book")
-    public Book saveBook(@RequestBody Book book) {
-        bookRepository.save(book);
-        return book;
+    public ResponseEntity<BookDTO> saveBook(@RequestBody BookDTO bookDTO) {
+        return new ResponseEntity<>(this.bookService.save(bookDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/book/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
 
-        Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Book not exist with id: " + id));
+        BookModel bookModel = bookESRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("BookModel not exist with id: " + id));
 
-        bookRepository.delete(book);
+        bookESRepo.delete(bookModel);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> findById(@PathVariable String id) {
-        Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Book not exist with id:" + id));
-        return ResponseEntity.ok(book);
+    public ResponseEntity<BookModel> findById(@PathVariable String id) {
+        BookModel bookModel = bookESRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("BookModel not exist with id:" + id));
+        return ResponseEntity.ok(bookModel);
     }
 
     @GetMapping("/book")
-    public Iterable<Book> findAll() {
-        return bookRepository.findAll();
+    public ResponseEntity<List<BookDTO>> findAll() {
+        return new ResponseEntity<>(this.bookService.findAll(), HttpStatus.OK);
+    }
+
+    //Check book tren ElasticSearch
+    @GetMapping("/ES/book")
+    public Iterable<BookModel> getAll() {
+        return bookESRepo.findAll();
     }
 
 
-    @RequestMapping(path="book/author/{author}")
-    public Page<Book> findByAuthor(@PathVariable("author")  String author, PageRequest pageRequest) {
+    @GetMapping(path="book/author/{author}")
+    public Page<BookModel> findByAuthor(@PathVariable("author")  String author) {
 
-        return bookRepository.findByAuthor(author, pageRequest);
+        PageRequest pageRequest = PageRequest.of(0, 10);
+
+        Page<BookModel> books = bookESRepo.findByAuthor(author, pageRequest);
+
+        return books;
     }
 
 
 
     @RequestMapping(path="book/title/{title}")
-    public List<Book> findByTitle(@PathVariable("title")  String title) {
+    public List<BookModel> findByTitle(@PathVariable("title")  String title) {
 
-        return bookRepository.findByTitle(title);
+        return bookESRepo.findByTitle(title);
     }
 
 

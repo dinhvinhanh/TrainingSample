@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "New Request",
+			"name": "Get all Book",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -25,7 +25,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Add a Book",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -59,7 +59,7 @@
 			"response": []
 		},
 		{
-			"name": "TilteSearch",
+			"name": "Search By Title",
 			"request": {
 				"method": "GET",
 				"header": []
@@ -67,10 +67,38 @@
 			"response": []
 		},
 		{
-			"name": "SearchById",
+			"name": "Search By ID",
 			"request": {
 				"method": "GET",
 				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Author",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get List from ES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/ES/book",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ES",
+						"book"
+					]
+				}
 			},
 			"response": []
 		}

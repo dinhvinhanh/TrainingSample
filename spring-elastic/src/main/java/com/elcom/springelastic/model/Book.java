@@ -1,37 +1,26 @@
 package com.elcom.springelastic.model;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.Query;
+import lombok.Data;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@ToString
-@Document(indexName = "book")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "books")
+@EntityListeners(AuditingEntityListener.class)
 public class Book {
     @Id
     private String id;
 
-    @Field(type = FieldType.Text, name = "title")
+    @Column(name="title")
     private String title;
 
-    @Field(type = FieldType.Text, name = "author")
+    @Column(name = "author")
     private String author;
 
-    Book(){};
-
-    public Book(String title, String author) {
-        super();
-        this.title = title;
-        this.author = author;
+    public Book() {
     }
 
-    public Book(String id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-    }
 
     public String getId() {
         return id;
@@ -55,5 +44,14 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }

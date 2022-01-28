@@ -12,14 +12,27 @@
         <module name="jwt-secure-sample" />
         <module name="spring-caching" />
         <module name="scheduled-sample" />
+        <module name="rabbitMQ" />
+      </profile>
+      <profile name="Annotation profile for spring-elastic" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="spring-elastic" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="jpa-sample" target="11" />
       <module name="jwt-secure-sample" target="1.8" />
+      <module name="rabbitMQ" target="11" />
       <module name="sample1" target="11" />
       <module name="scheduled-sample" target="11" />
       <module name="spring-caching" target="11" />
+      <module name="spring-elastic" target="11" />
       <module name="spring-profiles" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -27,9 +40,11 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="jpa-sample" options="-parameters" />
       <module name="jwt-secure-sample" options="-parameters" />
+      <module name="rabbitMQ" options="-parameters" />
       <module name="sample1" options="-parameters" />
       <module name="scheduled-sample" options="-parameters" />
       <module name="spring-caching" options="-parameters" />
+      <module name="spring-elastic" options="-parameters" />
       <module name="spring-profiles" options="-parameters" />
     </option>
   </component>

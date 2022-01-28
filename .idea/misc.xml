@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/ProfileSample/pom.xml" />
         <option value="$PROJECT_DIR$/ScheduleEmailTask/pom.xml" />
         <option value="$PROJECT_DIR$/JPA-Rest/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-elastic/pom.xml" />
+        <option value="$PROJECT_DIR$/rabbitMQ/pom.xml" />
       </list>
     </option>
   </component>

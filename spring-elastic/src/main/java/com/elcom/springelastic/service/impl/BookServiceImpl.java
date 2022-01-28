@@ -1,7 +1,11 @@
 package com.elcom.springelastic.service.impl;
 
+import com.elcom.springelastic.mapper.BookMapper;
 import com.elcom.springelastic.model.Book;
-import com.elcom.springelastic.repository.BookRepository;
+import com.elcom.springelastic.model.BookModel;
+import com.elcom.springelastic.model.dto.BookDTO;
+import com.elcom.springelastic.repository.BookDAO;
+import com.elcom.springelastic.repository.elastic.BookESRepo;
 import com.elcom.springelastic.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,42 +16,62 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+
+    private BookDAO bookDAO;
+    private BookMapper bookMapper;
+    private BookESRepo bookESRepo;
     @Autowired
-    private BookRepository bookRepository;
-
-    @Override
-    public Book save(Book book) {
-        return bookRepository.save(book);
+    BookServiceImpl(BookDAO bookDAO, BookMapper bookMapper){
+        this.bookDAO = bookDAO;
+        this.bookMapper = bookMapper;
     }
 
     @Override
-    public void delete(Book book) {
-
+    public BookDTO save(BookDTO bookDTO) {
+        Book book = this.bookDAO.save(this.bookMapper.toBook(bookDTO));
+        return this.bookMapper.toBookDTO(book);
     }
 
-
     @Override
-    public Book findOne(String id) {
+    public BookModel findOne(String id) {
         return null;
     }
 
+
     @Override
-    public Iterable<Book> findAll() {
-        return bookRepository.findAll();
+    public BookDTO findById(String id) {
+        return this.bookMapper.toBookDTO(this.bookDAO.findById(id).orElse(null));
     }
 
     @Override
-    public Page<Book> findByAuthor(String author, PageRequest pageRequest) {
-        return bookRepository.findByAuthor(author, pageRequest);
+    public List<BookDTO> findAll() {
+        return this.bookMapper.toBookDTOs(this.bookDAO.findAll());
     }
 
     @Override
-    public List<Book> findByTitle(String title) {
-        return bookRepository.findByTitle(title);
+    public void delete(BookModel bookModel) {
+
+    }
+
+    //@Override
+    //public Iterable<BookModel> findAll() {
+    //    return bookRepository.findAll();
+    //}
+
+    @Override
+    public Page<BookModel> findByAuthor(String author, PageRequest pageRequest) {
+        return bookESRepo.findByAuthor(author, pageRequest);
+    }
+
+    @Override
+    public List<BookModel> findByTitle(String title) {
+        return bookESRepo.findByTitle(title);
     }
 
     @Override
     public void deleteAll() {
-        bookRepository.deleteAll();
+        bookESRepo.deleteAll();
     }
+
+
 }

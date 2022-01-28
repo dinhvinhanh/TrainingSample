@@ -1,24 +1,36 @@
 package com.elcom.springelastic.service;
 
+import com.elcom.springelastic.mapper.BookMapper;
 import com.elcom.springelastic.model.Book;
+import com.elcom.springelastic.model.BookModel;
+import com.elcom.springelastic.model.dto.BookDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
 
-    void delete(Book book);
+    BookDTO save(BookDTO bookDTO);
 
-    Book findOne(String id);
+    BookDTO findById(String id);
+    List<BookDTO> findAll();
 
-    Iterable<Book> findAll();
 
-    Page<Book> findByAuthor(String author, PageRequest pageRequest);
+    //void save(Book book);
 
-    List<Book> findByTitle(String title);
+    void delete(BookModel bookModel);
+
+    BookModel findOne(String id);
+
+    //Iterable<BookModel> findAll();
+
+    Page<BookModel> findByAuthor(String author, PageRequest pageRequest);
+
+    List<BookModel> findByTitle(String title);
 
     void deleteAll();
+
+
 
 }
