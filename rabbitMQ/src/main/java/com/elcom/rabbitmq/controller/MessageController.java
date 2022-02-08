@@ -1,5 +1,6 @@
 package com.elcom.rabbitmq.controller;
 
+import com.elcom.rabbitmq.config.WorkerConfig;
 import com.elcom.rabbitmq.constant.Constant;
 import com.elcom.rabbitmq.model.Message;
 import com.elcom.rabbitmq.model.MessageStatus;
@@ -15,12 +16,14 @@ public class MessageController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+
     @PostMapping("/{Name}")
-    public String bookOrder(@RequestBody Message message, @PathVariable String Name ) {
+    public String messageOrder(@RequestBody Message message, @PathVariable String Name ) {
         message.setId(UUID.randomUUID().toString());
         MessageStatus messageStatus = new MessageStatus(message, "PROCESS", "Messaging Successfully "+ Name);
 
         rabbitTemplate.convertAndSend(Constant.EXCHANGE,Constant.ROUTING_KEY, messageStatus);
         return "success!!";
     }
+
 }
