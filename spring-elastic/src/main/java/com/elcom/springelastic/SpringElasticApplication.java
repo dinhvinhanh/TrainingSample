@@ -47,8 +47,8 @@ public class SpringElasticApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<BookDTO> bookDTOs = bookService.findAll();
-        bookDTOs.forEach(x -> LOGGER.info(x.toString()));
+        //List<BookDTO> bookDTOs = bookService.findAll();
+        //bookDTOs.forEach(x -> LOGGER.info(x.toString()));
 
 
         //esService.syncBooks();
