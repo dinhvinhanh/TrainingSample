@@ -1,5 +1,6 @@
 package com.elcom.rabbitmq.config;
 
+import com.elcom.rabbitmq.rpc.RpcClient;
 import com.elcom.rabbitmq.worker.WorkerReceiver;
 import com.elcom.rabbitmq.worker.WorkerSender;
 import org.springframework.amqp.core.Queue;
@@ -34,4 +35,5 @@ public class WorkerConfig {
     public WorkerSender workerSender() {
         return new WorkerSender();
     }
+
 }

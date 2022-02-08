@@ -1,4 +1,4 @@
-package com.elcom.rabbitmq.controller;
+package com.elcom.rabbitmq.helloworld;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

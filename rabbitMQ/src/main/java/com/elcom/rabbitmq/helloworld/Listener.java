@@ -1,4 +1,4 @@
-package com.elcom.rabbitmq.controller;
+package com.elcom.rabbitmq.helloworld;
 
 import com.elcom.rabbitmq.constant.Constant;
 import com.elcom.rabbitmq.model.MessageStatus;

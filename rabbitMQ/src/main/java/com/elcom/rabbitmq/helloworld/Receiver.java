@@ -1,4 +1,4 @@
-package com.elcom.rabbitmq.controller;
+package com.elcom.rabbitmq.helloworld;
 
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;

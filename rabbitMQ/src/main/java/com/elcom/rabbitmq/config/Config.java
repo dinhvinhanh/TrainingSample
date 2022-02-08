@@ -1,7 +1,7 @@
 package com.elcom.rabbitmq.config;
 
-import com.elcom.rabbitmq.controller.Receiver;
-import com.elcom.rabbitmq.controller.Sender;
+import com.elcom.rabbitmq.helloworld.Receiver;
+import com.elcom.rabbitmq.helloworld.Sender;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

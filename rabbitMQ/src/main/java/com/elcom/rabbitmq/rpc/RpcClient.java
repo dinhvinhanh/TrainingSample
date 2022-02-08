@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Profile("tut3")
 public class RpcClient {
     @Autowired
     private RabbitTemplate rpcTemplate;
@@ -20,14 +19,14 @@ public class RpcClient {
     @Qualifier(value = "rpcClientExchange")
     private DirectExchange directExchange;
 
-    public void send(int maxNumber) {
+    public void send(int maxNumber){
         for (int start = 0; start <= maxNumber; start++) {
             System.out.println(" [???] Client request for fib(" + start + ")");
             Integer response = (Integer) rpcTemplate.convertSendAndReceive(directExchange.getName(), "rpc", start);
             System.out.println(" [ok] Client get '" + response + "'");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(RpcClient.class.getName()).log(Level.SEVERE, null, ex);
             }

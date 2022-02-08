@@ -9,15 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-@Profile("tut3")
 public class RabbitMqApplication implements CommandLineRunner {
-
-    private RpcClient rpcClient;
-
-    public RabbitMqApplication(RpcClient rpcClient) {
-        this.rpcClient = rpcClient;
-    }
-
 
     public static void main(String[] args)  {
         SpringApplication.run(RabbitMqApplication.class, args);
@@ -25,6 +17,6 @@ public class RabbitMqApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        rpcClient.send(100);
+        //rpcClient.send(100);
     }
 }
